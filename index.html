@@ -200,12 +200,27 @@ body::before {
   </div>
 
   <!-- About Sidebar -->
-  <div id="aboutSidebar" class="sidebar">
+div id="aboutSidebar" class="sidebar">
     <span class="closebtn" onclick="closeSidebar('aboutSidebar')">&times;</span>
-     <a href="#">List of children</a>
-    <a href="#">List of Yp</a>
-    <a href="#">List of sister</a>
-    <a href="#">List of brothers</a>
+
+    <a href="javascript:void(0)" class="expandable" onclick="toggleExpand('aboutUsMenu', this)">About Us</a>
+    <div id="aboutUsMenu" class="submenu">
+      <a href="#">History</a>
+      <a href="#">Leadership</a>
+      <a href="#">Location</a>
+    </div>
+
+    <a href="javascript:void(0)" class="expandable" onclick="toggleExpand('missionMenu', this)">Our Mission</a>
+    <div id="missionMenu" class="submenu">
+      <a href="#">Evangelism</a>
+      <a href="#">Community</a>
+    </div>
+
+    <a href="javascript:void(0)" class="expandable" onclick="toggleExpand('visionMenu', this)">Our Vision</a>
+    <div id="visionMenu" class="submenu">
+      <a href="#">Future Goals</a>
+      <a href="#">Youth</a>
+    </div>
   </div>
 
   <!-- Register Sidebar -->
@@ -272,10 +287,16 @@ body::before {
       });
       document.getElementById("overlay").classList.remove("active");
     }
+    function toggleExpand(id, element) {
+      const submenu = document.getElementById(id);
+      submenu.classList.toggle("open");
+      element.classList.toggle("open");
+    }
   </script>
 
 </body>
 </html>
+
 
 
 
