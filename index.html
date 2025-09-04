@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHURCH IN TALISAY</title>
+  <style>
+   body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  position: relative;
+  background: url("lsm-card.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(145, 248, 176, 0.4);
+  z-index: -1;
+}
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(5, 85, 29, 0.7);
+      padding: 1%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00aaff;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background: #111;
+      overflow-x: hidden;
+      transition: 0.4s;
+      padding-top: 60px;
+      z-index: 1002;
+    }
+
+    .sidebar a {
+      padding: 12px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    .sidebar.open a {
+      opacity: 1;
+      transform: translateX(0);
+      transition: all 0.5s ease;
+    }
+
+    .sidebar a:hover {
+      background: #333;
+      border-left: 4px solid #00aaff;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    /* Dark overlay */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      z-index: 1000;
+    }
+
+    #overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .content {
+      flex: 1;
+      padding: 100px 20px 50px;
+      text-align: center;
+      color: rgb(5, 5, 5);
+      font-size: 20px;
+    }
+
+    /* Announcement box */
+    .announcement {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      text-align: left;
+    }
+
+    .announcement h2 {
+      margin-top: 0;
+      color: #05551d;
+    }
+
+    /* Register form */
+    .register-form {
+      padding: 20px;
+    }
+
+    .register-form input, .register-form button {
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      display: block;
+      font-size: 16px;
+    }
+
+    .register-form input {
+      background: #222;
+      color: white;
+    }
+
+    .register-form button {
+      background: #00aaff;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .register-form button:hover {
+      background: #0088cc;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(2, 51, 14, 0.8);
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Overlay -->
+  <div id="overlay" onclick="closeAllSidebars()"></div>
+
+  <!-- Navbar -->
+  <nav><h2>
+
+    <a onclick="toggleSidebar('eventsSidebar')">📅 Events</a>
+    <a onclick="toggleSidebar('aboutSidebar')">ℹ️ About</a>
+    <a onclick="toggleSidebar('registerSidebar')">📝 Register</a>
+  </h2></nav>
+
+  <!-- Events Sidebar -->
+  <div id="eventsSidebar" class="sidebar">
+    <span class="closebtn" onclick="closeSidebar('eventsSidebar')">&times;</span>
+    <a href="#">Event 1 - Fellowship</a>
+    <a href="#">Event 2 - Love Feast</a>
+    <a href="#">Event 3 - Youth Gathering</a>
+  </div>
+
+  <!-- About Sidebar -->
+  <div id="aboutSidebar" class="sidebar">
+    <span class="closebtn" onclick="closeSidebar('aboutSidebar')">&times;</span>
+    <a href="#">About Us</a>
+    <a href="#">Our Mission</a>
+    <a href="#">Our Vision</a>
+  </div>
+
+  <!-- Register Sidebar -->
+  <div id="registerSidebar" class="sidebar">
+    <span class="closebtn" onclick="closeSidebar('registerSidebar')">&times;</span>
+    <div class="register-form">
+      <h2 style="color:white;">Register</h2>
+      <input type="text" placeholder="Full Name">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Sign Up</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Welcome to Our Website</h1>
+    <p>Click Events, About, or Register to see the sidebar menu.</p>
+
+    <!-- Announcements directly on homepage -->
+    <div class="announcement">
+      <h2>📢 Latest Announcements</h2>
+      <p><strong>Brothers' Meeting:</strong> Tomorrow at 9 AM, Church in Mandaue.</p>
+      <p><strong>Love Feast:</strong> September 9, join us for fellowship.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 The Church in Talisay </p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleSidebar(id) {
+      const sidebar = document.getElementById(id);
+      const overlay = document.getElementById("overlay");
+
+      if (sidebar.style.width === "300px") {
+        sidebar.style.width = "0";
+        sidebar.classList.remove("open");
+        overlay.classList.remove("active");
+      } else {
+        closeAllSidebars();
+        sidebar.style.width = "300px";
+        sidebar.classList.add("open");
+        overlay.classList.add("active");
+      }
+    }
+
+    function closeSidebar(id) {
+      const sidebar = document.getElementById(id);
+      sidebar.style.width = "0";
+      sidebar.classList.remove("open");
+      document.getElementById("overlay").classList.remove("active");
+    }
+
+    function closeAllSidebars() {
+      const sidebars = document.querySelectorAll(".sidebar");
+      sidebars.forEach(sb => {
+        sb.style.width = "0";
+        sb.classList.remove("open");
+      });
+      document.getElementById("overlay").classList.remove("active");
+    }
+  </script>
+
+</body>
+</html>
